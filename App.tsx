@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { BackGround, Container, Logo, AreaInput, Input, SubmitButton,
+  SubmitText, Link, LinkText
+} from './src/styles.js';
 
-export default function App() {
+import { useNavigation } from '@react-navigation/native';
+import { Platform } from 'react-native';
+
+export default function SignIn(){
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <BackGround>
+      <Container
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        enabled
+      >
+        <Logo
+          source={require('../../../assets/Logo.png')}
+          resizeMode="contain"
+        />
+
+        <AreaInput>
+          <Input placeholder="Email" />
+        </AreaInput>
+
+        <AreaInput>
+          <Input placeholder="Senha" secureTextEntry />
+        </AreaInput>
+
+        <SubmitButton activeOpacity={0.8}>
+          <SubmitText>Acessar</SubmitText>
+        </SubmitButton>
+
+        <Link>
+          <LinkText>Criar sua conta!</LinkText>
+        </Link>
+      </Container>
+    </BackGround>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
